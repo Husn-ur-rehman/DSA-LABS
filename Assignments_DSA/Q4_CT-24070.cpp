@@ -51,6 +51,7 @@ class Linklist{
                 Node* temp = head;
                 head = head->next;
                 delete temp;
+                --count;
             }
         }
         void display(){
@@ -63,6 +64,15 @@ class Linklist{
             }
         }
 };
+Node* DeleteNode(Node* head, int count) {
+    while (head != nullptr && count != 0) {
+        Node* temp = head;
+        head = head->next;
+        delete temp;
+        --count;
+    }
+    return head;
+}
 int main(){
     Linklist L;
     L.insert_at_tail(1);
