@@ -65,6 +65,7 @@ int main(){
     L.insert_at_tail(4);
     L.insert_at_tail(5);
     L.insert_at_tail(6);
+    L.display();
     L.head = L.reverse();
 
     L.display();
