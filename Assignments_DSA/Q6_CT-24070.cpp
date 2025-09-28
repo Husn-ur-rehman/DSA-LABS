@@ -1,11 +1,13 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-class Node { //fundamental unit of a linked list
-public:
+class Node{
+    public:
     int data;
-    Node* next;
-    Node ( int val): data(val), next (nullptr) {
+    Node *next;
+    Node(int val){
+        data = val;
+        next = nullptr;
     }
 };
 
@@ -13,7 +15,9 @@ class Linklist{
     public:
     Node* head = nullptr;  // start of the list
     Node* tail = nullptr; // end of the list
+
         Linklist(): head(nullptr), tail(nullptr) {} // initialize a list
+
         void insert_at_tail(int val){ // Time Complexity: O(1) , Space Complexity: O(1)
             Node* NN = new Node(val);
             if(head == nullptr){ // base case
@@ -28,25 +32,7 @@ class Linklist{
                 tail = NN;
             }
         }
-        Node* reverse(){ // Time Complexity: O(n) , Space Complexity: O(1)
-            if(head == nullptr){
-                cout<<"List is empty"<<endl;
-                return nullptr;
-            }
-            Node* prev = nullptr;
-            Node* curr = head;
-            Node* next;
-
-            while (curr != nullptr) {
-                next = curr->next; // Store the next node
-                curr->next = prev; // Reverse the current node's pointer
-                prev = curr;       // Move pointers one position ahead
-                curr = next;
-            }
-            head = prev; // Update head to the new front of the list
-            return head;
-        }
-        void display(){ // Time Complexity: O(n)
+        void display(){ // Time Complexity : 0(n)
             Node* temp = head;
             while ( temp != nullptr){
                 cout<< temp->data<<" -> ";
@@ -55,8 +41,24 @@ class Linklist{
             cout<<"NULL"<<endl;
             }
         }
-};
-
+        void deleteNode(int count){ // Time Complexity : 0(n)
+            while( head!= nullptr && count!=0){
+                Node* temp = head;
+                head = head->next;
+                delete temp;
+                --count;
+            }
+        }
+    };
+    Node* DeleteNode(Node* head, int count) {
+    while (head != nullptr && count != 0) {
+        Node* temp = head;
+        head = head->next;
+        delete temp;
+        --count;
+    }
+    return head;
+}
 int main(){
     Linklist L;
     L.insert_at_tail(1);
@@ -65,8 +67,10 @@ int main(){
     L.insert_at_tail(4);
     L.insert_at_tail(5);
     L.insert_at_tail(6);
-    L.head = L.reverse();
-
     L.display();
+    L.deleteNode(2);
+    cout << "After deletion: "; 
+    L.display();
+    cout << endl;
     return 0;
 }
