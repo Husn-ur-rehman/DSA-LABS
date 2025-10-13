@@ -34,5 +34,4 @@ int main(){
     cin>>test;
     Solution obj;
     cout<<obj.Valid_Parenthesis(test);
-
 }
