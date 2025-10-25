@@ -1,13 +1,16 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-bool backspace(string t,string s){
+class Solution {
+public:
+    bool backspace(string s, string t) {
     stack<char> st;
     stack<char> ss;
 
     for( char i : t){
 
         if( i == '#'){
+            if(st.empty()) continue;
             st.pop();
         }
         else{
@@ -17,6 +20,7 @@ bool backspace(string t,string s){
     for( char i : s){
         
         if( i == '#'){
+            if(ss.empty()) continue;
             ss.pop();
         }
         else{
@@ -24,17 +28,25 @@ bool backspace(string t,string s){
         }
         
     }
-    if(st.size() == ss.size()){
-        return true;
+    while(!st.empty()&&!ss.empty()){
+        if(st.top() == ss.top()){
+            st.pop();
+            ss.pop();
+        } 
+        else return false;
     }
+    if(st.empty() && ss.empty()) return true;
     return false;
-
-}
+        
+        
+    }
+};
 int main(){
     string one, two;
     cin>> one;
     cin >> two;
-    if(backspace(one,two)){
+    Solution obj;
+    if(obj.backspace(one,two)){
         cout<<"TRUE";
 
     }else cout<<"FALSE";
