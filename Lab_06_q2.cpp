@@ -28,6 +28,6 @@ int main(){
     int money;
     cin>>money;
     Solution obj;
-    cout<<obj.BubbleSort(testing,money)<<endl;
+    cout<<"No of toys that can be bought are :"<<obj.BubbleSort(testing,money)<<endl;
     cout<<"REMAINING AMOUNT : "<<money;
 }
