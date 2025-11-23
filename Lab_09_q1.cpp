@@ -85,27 +85,66 @@ class BinarySearchTree {
     
     }
 
-    TreeNode* PreOrderTraversal(TreeNode* testing){
+    void PreOrderTraversal(TreeNode* testing){
         //base case;        
-        if(root == nullptr) return;
+        if(testing == nullptr) return;
 
-        cout<< root->val<< " ";
+        cout<< testing->val<< " ";
         //left case;
-        if(root->left != nullptr) PreOrderTraversal(root->left);
+        PreOrderTraversal(testing->left);
         //right case:
-        else PreOrderTraversal(root->right);
+        PreOrderTraversal(testing->right);
 
     }
 
     void PostOrderTraversal(TreeNode* testing){
         //base case;
-        if(root == nullptr) return;
+        if(testing == nullptr) return;
 
-        if(root->left != nullptr) PreOrderTraversal(root->left);
-        else PreOrderTraversal(root->right);
+        PostOrderTraversal(testing->left);
+        PostOrderTraversal(testing->right);
 
-        cout<<root->val<<" ";
+        cout<<testing->val<<" ";
     }
+
+    void postorderIterative(TreeNode* root) {
+        if (!root) return;
+
+        stack<TreeNode*> st1, st2;
+        st1.push(root);
+
+        while (!st1.empty()) {
+            TreeNode* cur = st1.top();
+            st1.pop();
+
+            st2.push(cur);  // push root after children
+
+            if (cur->left) st1.push(cur->left);
+            if (cur->right) st1.push(cur->right);
+        }
+
+        while (!st2.empty()) {
+            cout << st2.top()->val << " ";  
+            st2.pop();
+        }
+    }
+    void preorderIterative(TreeNode* root) {
+        if (!root) return;
+
+        stack<TreeNode*> st;
+        st.push(root);
+
+        while (!st.empty()) {
+            TreeNode* cur = st.top();
+            st.pop();
+
+            cout << cur->val << " ";       // Visit root
+
+            if (cur->right) st.push(cur->right);   // right goes first
+            if (cur->left) st.push(cur->left);     // left goes on top
+        }
+    }
+
 
 };
 
@@ -121,7 +160,12 @@ int main(){
     test.insert(2);
 
     test.PostOrderTraversal(test.root);
+    cout<<endl;
     test.PreOrderTraversal(test.root);
+    cout<<endl;
+    test.postorderIterative(test.root);
+    cout<<endl;
+    test.preorderIterative(test.root);
 
 }
 
