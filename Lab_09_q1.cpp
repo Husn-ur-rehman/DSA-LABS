@@ -2,11 +2,6 @@
 
 using namespace std;
 
-class Solution{
-
-    
-
-};
 class TreeNode {
     public:
     int val;
@@ -29,7 +24,6 @@ class BinarySearchTree {
         inorderRec(root);
         cout<<endl;
     }
-    private:
         // Recursive function to insert a node
         TreeNode* insertRec(TreeNode* node, int key) {
         // Base case: if the tree is empty, create a new node
@@ -91,25 +85,43 @@ class BinarySearchTree {
     
     }
 
-    TreeNode* PreOrderTraversal(TreeNode* root){
-        
-        //Base case 
-        if(root->left == nullptr && root->right == nullptr) return root;
-        
-        //right exists
-        if(root->left == nullptr){
-            PreOrderTraversal(root->right);
+    TreeNode* PreOrderTraversal(TreeNode* testing){
+        //base case;        
+        if(root == nullptr) return;
 
-        }
-        if(root->left != nullptr){
-            
-        }
+        cout<< root->val<< " ";
+        //left case;
+        if(root->left != nullptr) PreOrderTraversal(root->left);
+        //right case:
+        else PreOrderTraversal(root->right);
 
     }
 
-    void PostOrderTraversal(){
+    void PostOrderTraversal(TreeNode* testing){
+        //base case;
+        if(root == nullptr) return;
 
+        if(root->left != nullptr) PreOrderTraversal(root->left);
+        else PreOrderTraversal(root->right);
+
+        cout<<root->val<<" ";
     }
 
 };
+
+
+
+int main(){
+
+    BinarySearchTree test;
+    test.insert(4);
+    test.insert(7);
+    test.insert(3);
+    test.insert(1);
+    test.insert(2);
+
+    test.PostOrderTraversal(test.root);
+    test.PreOrderTraversal(test.root);
+
+}
 
