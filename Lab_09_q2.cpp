@@ -79,6 +79,7 @@ class EmployeeBST {
             }
             return current;
         }
+
         EmployeeNode* findMaxNode(EmployeeNode* node) {
             EmployeeNode* current = node;
             while (current && current->right != nullptr) {
@@ -86,6 +87,7 @@ class EmployeeBST {
             }
             return current;
         }
+        
         void inOrderTraversal(EmployeeNode* node) {
             if (node != nullptr) {
                 inOrderTraversal(node->left);

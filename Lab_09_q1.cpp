@@ -13,19 +13,25 @@ class TreeNode {
 class BinarySearchTree {
     public:
     TreeNode* root;
+    
     BinarySearchTree() : root(NULL) {}
+    
     void insert(int key) {
         root = insertRec(root, key);
-        }
+    }
+    
     void deleteNode(int key) {
         root = deleteRec(root, key);
     }
+
     void inorder() {
         inorderRec(root);
         cout<<endl;
     }
-        // Recursive function to insert a node
-        TreeNode* insertRec(TreeNode* node, int key) {
+
+// Recursive function to insert a node
+
+    TreeNode* insertRec(TreeNode* node, int key) {
         // Base case: if the tree is empty, create a new node
         if (node == NULL)
             return new TreeNode(key);
@@ -36,6 +42,7 @@ class BinarySearchTree {
             node->right = insertRec(node->right, key);
         return node;
     }
+
     // Recursive function to delete a node
     TreeNode* deleteRec(TreeNode* node, int key) {
         // Base case: if the tree is empty
@@ -68,6 +75,7 @@ class BinarySearchTree {
         }
         return node;
     }
+
     // Find the node with the minimum value (used for deleting nodes)
     TreeNode* minValueNode(TreeNode* node) {
         TreeNode* current = node;
@@ -75,6 +83,7 @@ class BinarySearchTree {
         current = current->left;
         return current;
     }
+
     // Inorder traversal function
     void inorderRec(TreeNode* root) {
         if (root != NULL) {
@@ -114,9 +123,9 @@ class BinarySearchTree {
         st1.push(root);
 
         while (!st1.empty()) {
+            
             TreeNode* cur = st1.top();
             st1.pop();
-
             st2.push(cur);  // push root after children
 
             if (cur->left) st1.push(cur->left);
@@ -128,6 +137,7 @@ class BinarySearchTree {
             st2.pop();
         }
     }
+
     void preorderIterative(TreeNode* root) {
         if (!root) return;
 
@@ -137,7 +147,6 @@ class BinarySearchTree {
         while (!st.empty()) {
             TreeNode* cur = st.top();
             st.pop();
-
             cout << cur->val << " ";       // Visit root
 
             if (cur->right) st.push(cur->right);   // right goes first
